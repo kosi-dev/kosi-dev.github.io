@@ -1,35 +1,22 @@
 <!DOCTYPE html>
+<html lang="en">
 
-<html>
-	<head>
-		<!-- Global site tag (gtag.js) - Google Analytics -->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-177985622-1"></script>
-		<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag(){dataLayer.push(arguments);}
-		gtag('js', new Date());
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-		gtag('config', 'UA-177985622-1');
-		</script>
+    <title>Upload Files :))</title>
 
-		<title>Kosi Dev</title>
+</head>
 
-	</head>
+<body>
+    <form method="post" enctype="multipart/form-data">
+        <input type="file" name="files[]" multiple>
+        <input type="submit" value="Upload File" name="submit">
+    </form>
 
-	<body>
-		<header>
-			<h1>Kosi Dev</h1>
-		</header>
-		
-		<nav>
-			<a href="waldo.html">Where's Waldo?</a>
-		</nav>
+	<script src="upload.js"></script>
+</body>
 
-		<main>
-			
-			<p>This text is lonely.</p>
-		</main>
-
-		<script src="script.js"></script>
-	</body>
 </html>
