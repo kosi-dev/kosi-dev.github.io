@@ -1,8 +1,8 @@
 var grocery_table;
 
 class Table {
-	constructor(table) {
-		this.table = table;
+	constructor(_table) {
+		this.table = _table;
 		this.table_head = this.table.shift();
 		this.table_current = this.table;
 		this.sort_index = -1;
@@ -11,26 +11,25 @@ class Table {
 	}
 
 	build(_table) {
-		var t = instanceElement("table", "", this.parent);
-		instanceElement("caption", "Groceries", t);
-		var head = instanceElement("thead", "", t);
-		var row = instanceElement("tr", "", head);
+		let table = instanceElement("table", "", this.parent);
+		let thead = instanceElement("thead", "", table);
+		let tr = instanceElement("tr", "", thead);
+		let tbody = instanceElement("tbody", "", table);
+		instanceElement("caption", "Groceries", table);
 
 		for (let i = 0; i < this.table_head.length; i++) {
-			let th = instanceElement("th", "", row);
+			let th = instanceElement("th", "", tr);
 			let button = instanceElement("button", this.table_head[i], th)
 			button.onclick = function() {
 				return grocery_table.sort(i)
 			}
 		}
-		
-		var body = instanceElement("tbody", "", t);
 
-		for (var i = 0; i < _table.length; i++) {
-			var row = instanceElement("tr", "", body);
+		for (let i = 0; i < _table.length; i++) {
+			let tr = instanceElement("tr", "", tbody);
 
-			for (var j = 0; j < _table[i].length; j++) {
-				instanceElement("th", _table[i][j], row);
+			for (let j = 0; j < _table[i].length; j++) {
+				instanceElement("th", _table[i][j], tr);
 			}
 		}
 	}
@@ -74,10 +73,10 @@ function tableInit(_path, _parent) {
 }
 
 function arrayFromCSV(_csv) {
-	var result = [];
-	var lines = _csv.split("\n");
+	let result = [];
+	let lines = _csv.split("\n");
 
-	for (var i = 0; i < lines.length; i++) {
+	for (let i = 0; i < lines.length; i++) {
 		words = lines[i].split(",")
 
 		for (let j = 0; j < words.length; j++) {
@@ -106,15 +105,8 @@ function checkFilter(_filter_key) {
 	}
 }
 
-function sortFunction(_flip, _sort_index) {
-	if (_flip) {
-		return function(a, b) {
-			return (a[_sort_index] > b[_sort_index]) - (a[_sort_index] < b[_sort_index]);
-		}
-	}
-	else {
-		return function(a, b) {
-			return (a[_sort_index] < b[_sort_index]) - (a[_sort_index] > b[_sort_index]);
-		}
+function sortFunction(_flip, _index) {
+	return function(a, b) {
+		return ((a[_index] < b[_index]) - (a[_index] > b[_index])) * (1 - 2 * _flip);
 	}
 }
