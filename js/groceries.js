@@ -1,12 +1,76 @@
+var grocery_table;
 
-var table;
-var table_head;
-var table_current;
-var filter_key;
-var sort_index;
+class Table {
+	constructor(table) {
+		this.table = table;
+		this.table_head = this.table.shift();
+		this.table_current = this.table;
+		this.sort_index = -1;
+		this.sort_flip = false;
+		this.parent;
+	}
+
+	build(_table) {
+		var t = instanceElement("table", "", this.parent);
+		instanceElement("caption", "Groceries", t);
+		var head = instanceElement("thead", "", t);
+		var row = instanceElement("tr", "", head);
+
+		for (var i = 0; i < this.table_head.length; i++) {
+			instanceElement("th", this.table_head[i], row);
+		}
+
+		var body = instanceElement("tbody", "", t);
+
+		for (var i = 0; i < _table.length; i++) {
+			var row = instanceElement("tr", "", body);
+
+			for (var j = 0; j < _table[i].length; j++) {
+				instanceElement("th", _table[i][j], row);
+			}
+		}
+	}
+
+	filter(_filter_key) {
+		this.rebuild(this.table.filter(checkFilter(_filter_key)));
+	}
+
+	sort(_sort_index) {
+		if (this.sort_index == _sort_index) {
+			this.sort_flip = !this.sort_flip;
+		}
+		this.sort_index = _sort_index;
+		this.rebuild([... this.table_current].sort(sortFunction(this.sort_flip, this.sort_index)));
+	}
+
+	rebuild(_table){
+		this.table_current = _table;
+		this.parent.innerHTML = "";
+		this.build(this.table_current);
+	}
+}
+
+function checkFilter(_filter_key) {
+	return function(_array) {
+		return _array.includes(_filter_key);
+	}
+}
+
+function sortFunction(_flip, _sort_index) {
+	if (_flip) {
+		return function(a, b) {
+			return (a[_sort_index] > b[_sort_index]) - (a[_sort_index] < b[_sort_index]);
+		}
+	}
+	else {
+		return function(a, b) {
+			return (a[_sort_index] < b[_sort_index]) - (a[_sort_index] > b[_sort_index]);
+		}
+	}
+}
 
 $(document).ready(function() {
-	tableInit("assets/groceries/groceries.csv", document.getElementById("table"));
+	tableInit("assets/groceries/groceries.csv");
 });
 
 function tableInit(_path, _parent) {
@@ -14,11 +78,12 @@ function tableInit(_path, _parent) {
 
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
-			table = arrayFromCSV(this.responseText);
-			table_head = table.shift()
-			tableCreate(_parent, table, table_head);
+			grocery_table = new Table(arrayFromCSV(this.responseText));
+			grocery_table.parent = document.getElementById("table");
+			grocery_table.build(grocery_table.table);
+			tableSort(grocery_table, 6);
 		}
-	};
+	}
 	xhttp.open("GET", _path, true);
 	xhttp.send();
 }
@@ -28,31 +93,19 @@ function arrayFromCSV(_csv) {
 	var lines = _csv.split("\n");
 
 	for (var i = 0; i < lines.length; i++) {
-		result.push(lines[i].split(","));
+		words = lines[i].split(",")
+
+		for (let j = 0; j < words.length; j++) {
+			if (!isNaN(Number(words[j]))) {
+				words[j] = Number(words[j])
+			}
+		}
+
+		lines[i] = words
+		result.push(lines[i]);
 	}
 	
 	return result;
-}
-
-function tableCreate(_parent, _table, _table_head) {
-	var t = instanceElement("table", "", _parent);
-	instanceElement("caption", "Groceries", t);
-	var head = instanceElement("thead", "", t);
-	var row = instanceElement("tr", "", head);
-
-	for (var i = 0; i < _table_head.length; i++) {
-		instanceElement("th", _table_head[i], row);
-	}
-
-	var body = instanceElement("tbody", "", t);
-
-	for (var i = 0; i < _table.length; i++) {
-		var row = instanceElement("tr", "", body);
-
-		for (var j = 0; j < _table[i].length; j++) {
-			instanceElement("th", _table[i][j], row);
-		}
-	}
 }
 
 function instanceElement(_id, _innerHTML, _parent) {
@@ -60,31 +113,4 @@ function instanceElement(_id, _innerHTML, _parent) {
 	e.innerHTML = _innerHTML;
 	_parent.appendChild(e);
 	return e;
-}
-
-function tableFilter(_element) {
-	table_current = table.filter(checkFilter)
-	tableReplace(_element, table_current);
-}
-
-function tableSort(_element) {
-	tableReplace(_element, [... table_current].sort(sortFunction));
-}
-
-function tableReplace(_element, _table){
-	_element.innerHTML = "";
-	tableCreate(_element, _table, table_head);
-}
-
-function sortFunction(a, b) {
-	if (a[sort_index] === b[sort_index]) {
-		return 0;
-	}
-	else {
-		return (a[sort_index] < b[sort_index]) ? -1 : 1;
-	}
-}
-
-function checkFilter(_array) {
-	return _array.includes(filter_key);
 }
