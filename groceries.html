@@ -19,10 +19,25 @@
 		</nav>
 
 		<main>
-			<button onclick='tableReplace(document.getElementById("table"), table)'>Remove filters</button>
-			<button onclick='filter_key = "Kiwi"; tableFilter(document.getElementById("table"))'>Kiwi</button>
-			<button onclick='filter_key = "Rema 1000"; tableFilter(document.getElementById("table"))'>Rema</button>
-			<button onclick='filter_key = "Bunnpris"; tableFilter(document.getElementById("table"))'>Bunnpris</button>
+			<div>
+				<p>Filters:</p>
+				<button onclick='table_current = table; tableReplace(document.getElementById("table"), table_current)'>Remove filters</button>
+				<button onclick='filter_key = "Kiwi"; tableFilter(document.getElementById("table"))'>Kiwi</button>
+				<button onclick='filter_key = "Rema 1000"; tableFilter(document.getElementById("table"))'>Rema</button>
+				<button onclick='filter_key = "Bunnpris"; tableFilter(document.getElementById("table"))'>Bunnpris</button>
+			</div>
+
+			<div>
+				<p>Sort:</p>
+				<button onclick='sort_index = 0; tableSort(document.getElementById("table"))'>Butikk</button>
+				<button onclick='sort_index = 1; tableSort(document.getElementById("table"))'>Produkt</button>
+				<button onclick='sort_index = 2; tableSort(document.getElementById("table"))'>Pris</button>
+				<button onclick='sort_index = 3; tableSort(document.getElementById("table"))'>Vekt</button>
+				<button onclick='sort_index = 4; tableSort(document.getElementById("table"))'>Pris/Kg</button>
+				<button onclick='sort_index = 5; tableSort(document.getElementById("table"))'>Rabatt</button>
+				<button onclick='sort_index = 6; tableSort(document.getElementById("table"))'>Pris/Kg m. Rabatt</button>
+			</div>
+
 			<div id="table"></div>
 		</main>
 	</body>

@@ -1,6 +1,7 @@
 
 var table;
 var table_head;
+var table_current;
 var filter_key;
 var sort_index;
 
@@ -62,11 +63,12 @@ function instanceElement(_id, _innerHTML, _parent) {
 }
 
 function tableFilter(_element) {
-	tableReplace(_element, table.filter(checkFilter));
+	table_current = table.filter(checkFilter)
+	tableReplace(_element, table_current);
 }
 
-function sortSort(_element) {
-	tableReplace(_element, [... table].sort(sortFunction));
+function tableSort(_element) {
+	tableReplace(_element, [... table_current].sort(sortFunction));
 }
 
 function tableReplace(_element, _table){
