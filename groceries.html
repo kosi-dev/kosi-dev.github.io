@@ -6,6 +6,7 @@
 		<link rel="stylesheet" href="css/style.css">
 		<script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<script src="js/groceries.js"></script>
+		<meta charset="UTF-16">
 	</head>
 
 	<body>
@@ -22,22 +23,10 @@
 			<div>
 				<p>Filters:</p>
 				<button onclick='grocery_table.rebuild(grocery_table.table)'>Remove filters</button>
-				<button onclick='grocery_table.filter("Kiwi")'>Kiwi</button>
-				<button onclick='grocery_table.filter("Rema 1000")'>Rema</button>
-				<button onclick='grocery_table.filter("Bunnpris")'>Bunnpris</button>
+				<button onclick='grocery_table.filter("Kiwi")'>Kiwi 🥇</button>
+				<button onclick='grocery_table.filter("Rema 1000")'>Rema 🥈</button>
+				<button onclick='grocery_table.filter("Bunnpris")'>Bunnpris 🥉</button>
 			</div>
-
-			<div>
-				<p>Sort:</p>
-				<button onclick='grocery_table.sort(0)'>Butikk</button>
-				<button onclick='grocery_table.sort(1)'>Produkt</button>
-				<button onclick='grocery_table.sort(2)'>Pris</button>
-				<button onclick='grocery_table.sort(3)'>Vekt</button>
-				<button onclick='grocery_table.sort(4)'>Pris/Kg</button>
-				<button onclick='grocery_table.sort(5)'>Rabatt</button>
-				<button onclick='grocery_table.sort(6)'>Pris/Kg m. Rabatt</button>
-			</div>
-
 			<div id="table"></div>
 		</main>
 	</body>

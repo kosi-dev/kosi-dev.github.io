@@ -16,10 +16,14 @@ class Table {
 		var head = instanceElement("thead", "", t);
 		var row = instanceElement("tr", "", head);
 
-		for (var i = 0; i < this.table_head.length; i++) {
-			instanceElement("th", this.table_head[i], row);
+		for (let i = 0; i < this.table_head.length; i++) {
+			let th = instanceElement("th", "", row);
+			let button = instanceElement("button", this.table_head[i], th)
+			button.onclick = function() {
+				return grocery_table.sort(i)
+			}
 		}
-
+		
 		var body = instanceElement("tbody", "", t);
 
 		for (var i = 0; i < _table.length; i++) {
@@ -47,25 +51,6 @@ class Table {
 		this.table_current = _table;
 		this.parent.innerHTML = "";
 		this.build(this.table_current);
-	}
-}
-
-function checkFilter(_filter_key) {
-	return function(_array) {
-		return _array.includes(_filter_key);
-	}
-}
-
-function sortFunction(_flip, _sort_index) {
-	if (_flip) {
-		return function(a, b) {
-			return (a[_sort_index] > b[_sort_index]) - (a[_sort_index] < b[_sort_index]);
-		}
-	}
-	else {
-		return function(a, b) {
-			return (a[_sort_index] < b[_sort_index]) - (a[_sort_index] > b[_sort_index]);
-		}
 	}
 }
 
@@ -113,4 +98,23 @@ function instanceElement(_id, _innerHTML, _parent) {
 	e.innerHTML = _innerHTML;
 	_parent.appendChild(e);
 	return e;
+}
+
+function checkFilter(_filter_key) {
+	return function(_array) {
+		return _array.includes(_filter_key);
+	}
+}
+
+function sortFunction(_flip, _sort_index) {
+	if (_flip) {
+		return function(a, b) {
+			return (a[_sort_index] > b[_sort_index]) - (a[_sort_index] < b[_sort_index]);
+		}
+	}
+	else {
+		return function(a, b) {
+			return (a[_sort_index] < b[_sort_index]) - (a[_sort_index] > b[_sort_index]);
+		}
+	}
 }
