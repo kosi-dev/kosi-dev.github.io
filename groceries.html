@@ -3,6 +3,7 @@
 <html>
 	<head>
 		<title>Kosi Dev</title>
+		<link rel="stylesheet" href="css/style.css">
 		<script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<script src="js/groceries.js"></script>
 	</head>
@@ -18,7 +19,11 @@
 		</nav>
 
 		<main>
-			<div id="csv"></div>
+			<button onclick='tableReplace(document.getElementById("table"), table)'>Remove filters</button>
+			<button onclick='filter_key = "Kiwi"; tableFilter(document.getElementById("table"))'>Kiwi</button>
+			<button onclick='filter_key = "Rema 1000"; tableFilter(document.getElementById("table"))'>Rema</button>
+			<button onclick='filter_key = "Bunnpris"; tableFilter(document.getElementById("table"))'>Bunnpris</button>
+			<div id="table"></div>
 		</main>
 	</body>
 </html>
