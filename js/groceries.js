@@ -31,11 +31,13 @@ function readFile(_element, _path)
 function createTable(_table, _csv)
 {
 	instanceElement("caption", "Groceries", _table)
+	var head = instanceElement("thead", "", _table)
 	var body = instanceElement("tbody", "", _table)
+	
 	var lines = _csv.split("\n");
 	var headlines = lines[0].split(",")
-	//var head = instanceElement("thead", "", body)
-	var row = instanceElement("tr", "", body)
+	
+	var row = instanceElement("tr", "", head)
 
 	for (var i = 0; i < headlines.length; i++)
 	{
