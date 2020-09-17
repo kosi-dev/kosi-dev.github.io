@@ -39,9 +39,7 @@ class Table {
 	}
 
 	sort(_sort_index) {
-		if (this.sort_index == _sort_index) {
-			this.sort_flip = !this.sort_flip;
-		}
+		this.sort_flip = (this.sort_flip != (this.sort_index == _sort_index))
 		this.sort_index = _sort_index;
 		this.rebuild([... this.table_current].sort(sortFunction(this.sort_flip, this.sort_index)));
 	}
@@ -88,7 +86,6 @@ function arrayFromCSV(_csv) {
 		lines[i] = words
 		result.push(lines[i]);
 	}
-	
 	return result;
 }
 
