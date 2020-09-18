@@ -1,0 +1,137 @@
+
+html {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.hidden,
+[hidden] {
+    display: none !important;
+}
+
+.pure-img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+body, table {
+	margin-left: auto;
+    margin-right: auto;
+    font-size: large;
+    font-weight: 100;
+}
+
+table {
+    width: 100%;
+}
+
+body {
+	width: 100%;
+}
+
+h1 {
+	text-align: center;
+}
+
+input {
+    padding: 10px 10px 10px 10px;
+    border-radius: 5px;
+    border-color: #cbcbcb;
+    border-style: solid;
+}
+
+input:focus {
+    outline: none !important;
+    border: 2px solid plum;
+}
+
+.right {
+    float: right;
+}
+
+.left {
+    float: left;
+}
+
+.pure-button {
+    /* Structure */
+    display: inline-block;
+    line-height: normal;
+    white-space: nowrap;
+    vertical-align: middle;
+    text-align: center;
+    cursor: pointer;
+    -webkit-user-drag: none;
+    user-select: none;
+    box-sizing: border-box;
+}
+
+.pure-button {
+    letter-spacing: normal;
+    word-spacing: normal;
+    vertical-align: top;
+    text-rendering: auto;
+}
+/*csslint outline-none:false*/
+
+.pure-button {
+    font-family: inherit;
+    font-size: 100%;
+    padding: 0.5em 1em;
+    color: rgba(0, 0, 0, 0.80);
+    border: none rgba(0, 0, 0, 0);
+    background-color: #E6E6E6;
+    text-decoration: none;
+    border-radius: 2px;
+}
+
+.pure-button-hover,
+.pure-button:hover,
+.pure-button:focus {
+    background-color: palevioletred;
+    color: white;
+}
+.pure-button:focus {
+    outline: 0;
+}
+.pure-button-active,
+.pure-button:active {
+    background-color: plum;
+}
+
+.pure-table {
+    /* Remove spacing between table cells (from Normalize.css) */
+    border-collapse: collapse;
+    border-spacing: 0;
+    empty-cells: show;
+    border: 1px solid #cbcbcb;
+}
+
+.pure-table caption {
+    color: #000;
+    font: italic 85%/1 arial, sans-serif;
+    padding: 1em 0;
+    text-align: center;
+}
+
+.pure-table td,
+.pure-table th {
+    font-size: inherit;
+    font-weight: inherit;
+    border-bottom: 1px solid #cbcbcb;
+    
+    padding: 0.5em 1em;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    text-align: center;
+    vertical-align: middle;
+}
+
+.pure-table thead {
+    background-color: #e0e0e0;
+    color: #000;
+    text-align: center;
+    vertical-align: bottom;
+    align-content: center;
+}
