@@ -50,6 +50,11 @@ class Table {
 		this.parent.innerHTML = "";
 		this.build(this.table_current);
 	}
+
+	search() {
+		let input = document.getElementById("search")
+		this.rebuild(this.table.filter(checkSearch(input.value.toLowerCase())));
+	}
 }
 
 $(document).ready(function() {
@@ -100,6 +105,17 @@ function instanceElement(_id, _innerHTML, _parent) {
 function checkFilter(_filter_key) {
 	return function(_array) {
 		return _array.includes(_filter_key);
+	}
+}
+
+function checkSearch(_filter_key) {
+	return function(_array) {
+		for (let i = 0; i < _array.length; i++) {
+			if (_array[i].toString().toLowerCase().includes(_filter_key)) {
+				return true;
+			}
+		}
+		return (false);
 	}
 }
 
