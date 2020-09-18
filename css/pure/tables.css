@@ -17,8 +17,7 @@
 .pure-table td,
 .pure-table th {
     font-size: inherit;
-    font-weight: 100;
-    border-left: 1px solid #cbcbcb;
+    font-weight: inherit;
     border-bottom: 1px solid #cbcbcb;
     
     padding: 0.5em 1em;
@@ -52,12 +51,4 @@ striping:
 /* nth-child selector for modern browsers */
 .pure-table-striped tr:nth-child(2n-1) td {
     background-color: #f2f2f2;
-}
-
-/* BORDERED TABLES */
-.pure-table-bordered td {
-    border-bottom: 1px solid #cbcbcb;
-}
-.pure-table-bordered tbody > tr:last-child > td {
-    border-bottom-width: 0;
 }
