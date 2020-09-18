@@ -22,15 +22,21 @@
 		</nav>
 
 		<main>
-			<input type="text" placeholder="Search.." align="left">
+			<br>
 
-			<div align="right">
+			<input type="text" placeholder="Search.." class="left">
+
+			<div class="right">
 				<button class=pure-button onclick='grocery_table.filter("Kiwi")'>Kiwi 🥇</button>
 				<button class=pure-button onclick='grocery_table.filter("Rema 1000")'>Rema 🥈</button>
 				<button class=pure-button onclick='grocery_table.filter("Bunnpris")'>Bunnpris 🥉</button>
 				<button class=pure-button onclick='grocery_table.rebuild(grocery_table.table)'>Remove filters 🚫</button>
 			</div>
+
 			<br>
+			<br>
+			<br>
+
 			<div id="table"></div>
 		</main>
 	</body>

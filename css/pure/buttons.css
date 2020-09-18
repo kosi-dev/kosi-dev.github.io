@@ -14,7 +14,7 @@
 .pure-button-hover,
 .pure-button:hover,
 .pure-button:focus {
-    background-color: plum;
+    background-color: palevioletred;
     color: white;
 }
 .pure-button:focus {
@@ -22,7 +22,7 @@
 }
 .pure-button-active,
 .pure-button:active {
-    background-color: palevioletred;
+    background-color: plum;
 }
 
 .pure-button[disabled],

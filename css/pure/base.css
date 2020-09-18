@@ -35,6 +35,7 @@ body, table {
 	margin-left: auto;
     margin-right: auto;
     font-size: small;
+    font-weight: 100;
 }
 
 table {
@@ -59,4 +60,12 @@ input {
 input:focus {
     outline: none !important;
     border: 2px solid plum;
+}
+
+.right {
+    float: right;
+}
+
+.left {
+    float: left;
 }
