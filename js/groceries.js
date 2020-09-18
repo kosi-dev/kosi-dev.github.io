@@ -15,11 +15,12 @@ class Table {
 		let thead = instanceElement("thead", "", table);
 		let tr = instanceElement("tr", "", thead);
 		let tbody = instanceElement("tbody", "", table);
-		instanceElement("caption", "Groceries", table);
+		table.classList.add('pure-table');
 
 		for (let i = 0; i < this.table_head.length; i++) {
 			let th = instanceElement("th", "", tr);
 			let button = instanceElement("button", this.table_head[i], th)
+			button.classList.add('pure-button');
 			button.onclick = function() {
 				return grocery_table.sort(i)
 			}

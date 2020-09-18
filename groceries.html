@@ -3,7 +3,11 @@
 <html>
 	<head>
 		<title>Kosi Dev</title>
-		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/pure/base.css">
+		<link rel="stylesheet" href="css/pure/buttons-core.css">
+		<link rel="stylesheet" href="css/pure/buttons.css">
+		<link rel="stylesheet" href="css/pure/tables.css">
+
 		<script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<script src="js/groceries.js"></script>
 		<meta charset="UTF-16">
@@ -11,22 +15,22 @@
 
 	<body>
 		<header>
-			<h1>Groceries</h1>
+			<h1>Matvarer</h1>
 		</header>
 		
 		<nav>
-			<a href="index.html">Home</a>
-			<br>
 		</nav>
 
 		<main>
-			<div>
-				<p>Filters:</p>
-				<button onclick='grocery_table.rebuild(grocery_table.table)'>Remove filters</button>
-				<button onclick='grocery_table.filter("Kiwi")'>Kiwi 🥇</button>
-				<button onclick='grocery_table.filter("Rema 1000")'>Rema 🥈</button>
-				<button onclick='grocery_table.filter("Bunnpris")'>Bunnpris 🥉</button>
+			<input type="text" placeholder="Search.." align="left">
+
+			<div align="right">
+				<button class=pure-button onclick='grocery_table.filter("Kiwi")'>Kiwi 🥇</button>
+				<button class=pure-button onclick='grocery_table.filter("Rema 1000")'>Rema 🥈</button>
+				<button class=pure-button onclick='grocery_table.filter("Bunnpris")'>Bunnpris 🥉</button>
+				<button class=pure-button onclick='grocery_table.rebuild(grocery_table.table)'>Remove filters 🚫</button>
 			</div>
+			<br>
 			<div id="table"></div>
 		</main>
 	</body>

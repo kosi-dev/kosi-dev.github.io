@@ -1,6 +1,15 @@
 
-table {
+body, table {
 	margin-left: auto;
 	margin-right: auto;
 	width: auto;
 }
+
+body {
+	width: 50%;
+}
+
+h1 {
+	text-align: center;
+}
+
