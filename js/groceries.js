@@ -110,12 +110,8 @@ function checkFilter(_filter_key) {
 
 function checkSearch(_filter_key) {
 	return function(_array) {
-		for (let i = 0; i < _array.length; i++) {
-			if (_array[i].toString().toLowerCase().includes(_filter_key)) {
-				return true;
-			}
-		}
-		return (false);
+		const included = (element) => element.toString().toLowerCase().includes(_filter_key);
+		return _array.some(included)
 	}
 }
 
