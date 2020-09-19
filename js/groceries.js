@@ -1,4 +1,3 @@
-var grocery_table;
 
 class Column {
 	constructor() {
@@ -12,8 +11,6 @@ class Column {
 		this.CALORIES = 7;
 	}
 }
-
-var COLUMN = new Column()
 
 class Table {
 	constructor(_table) {
@@ -72,6 +69,9 @@ class Table {
 	}
 }
 
+var grocery_table;
+var COLUMN = new Column()
+
 $(document).ready(function() {
 	tableInit("assets/groceries/groceries.csv");
 });
@@ -84,7 +84,7 @@ function tableInit(_path, _parent) {
 			grocery_table = new Table(arrayFromCSV(this.responseText));
 			grocery_table.parent = document.getElementById("table");
 			grocery_table.build(grocery_table.table);
-			tableSort(grocery_table, 6);
+			grocery_table.sort(COLUMN.PRICE_KG);
 		}
 	}
 	xhttp.open("GET", _path, true);
@@ -152,6 +152,6 @@ function checkSearch(_filter_key) {
 
 function sortFunction(_flip, _index) {
 	return function(a, b) {
-		return ((a[_index] < b[_index]) - (a[_index] > b[_index])) * (1 - 2 * _flip);
+		return ((a[_index] > b[_index]) - (a[_index] < b[_index])) * (1 - 2 * _flip);
 	}
 }
