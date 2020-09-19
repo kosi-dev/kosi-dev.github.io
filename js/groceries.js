@@ -1,5 +1,20 @@
 var grocery_table;
 
+class Column {
+	constructor() {
+		this.STORE = 0;
+		this.BRAND = 1;
+		this.FOOD = 2;
+		this.PRICE = 3;
+		this.WEIGHT = 4;
+		this.DISCOUNT = 5;
+		this.PRICE_KG = 6;
+		this.CALORIES = 7;
+	}
+}
+
+var COLUMN = new Column()
+
 class Table {
 	constructor(_table) {
 		this.table = _table;
@@ -76,17 +91,37 @@ function tableInit(_path, _parent) {
 	xhttp.send();
 }
 
+function round(number, decimals) {
+	let factor = Math.pow(10, decimals);
+	return (Math.round(number * factor) / factor);
+}
+
 function arrayFromCSV(_csv) {
 	let result = [];
 	let lines = _csv.split("\n");
 
 	for (let i = 0; i < lines.length; i++) {
-		words = lines[i].split(",")
+		var words = lines[i].split(",")
 
 		for (let j = 0; j < words.length; j++) {
 			if (!isNaN(Number(words[j]))) {
 				words[j] = Number(words[j])
 			}
+		}
+		
+		if (words[COLUMN.WEIGHT] == 0) {
+			if (words[COLUMN.PRICE_KG] == 0 || words[COLUMN.PRICE] == 0) {
+				words[COLUMN.WEIGHT] = 1;
+			}
+			else {
+				words[COLUMN.WEIGHT] = round(words[COLUMN.PRICE] / words[COLUMN.PRICE_KG], 2);
+			}
+		}
+		if (words[COLUMN.PRICE_KG] == 0) {
+			words[COLUMN.PRICE_KG] = round(words[COLUMN.PRICE] / words[COLUMN.WEIGHT], 2);
+		}
+		if (words[COLUMN.PRICE] == 0) {
+			words[COLUMN.PRICE] = round(words[COLUMN.PRICE_KG] * words[COLUMN.WEIGHT], 2);
 		}
 
 		lines[i] = words
