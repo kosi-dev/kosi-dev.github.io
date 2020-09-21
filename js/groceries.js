@@ -109,6 +109,10 @@ function arrayFromCSV(_csv) {
 			}
 		}
 		
+		if (words[COLUMN.STORE] == "Kiwi" && words[COLUMN.DISCOUNT] == 0) {
+			words[COLUMN.DISCOUNT] = 0.01
+		}
+
 		if (words[COLUMN.WEIGHT] == 0) {
 			if (words[COLUMN.PRICE_KG] == 0 || words[COLUMN.PRICE] == 0) {
 				words[COLUMN.WEIGHT] = 1;
@@ -118,12 +122,20 @@ function arrayFromCSV(_csv) {
 			}
 		}
 		if (words[COLUMN.PRICE_KG] == 0) {
-			words[COLUMN.PRICE_KG] = round(words[COLUMN.PRICE] / words[COLUMN.WEIGHT], 2);
+			words[COLUMN.PRICE_KG] = round((1 - words[COLUMN.DISCOUNT]) * words[COLUMN.PRICE] / words[COLUMN.WEIGHT], 2);
 		}
 		if (words[COLUMN.PRICE] == 0) {
 			words[COLUMN.PRICE] = round(words[COLUMN.PRICE_KG] * words[COLUMN.WEIGHT], 2);
 		}
+		
+		if (typeof words[COLUMN.CALORIES] === 'string') {
+			words[COLUMN.CALORIES] = words[COLUMN.CALORIES].split(";")
 
+			if (words[COLUMN.CALORIES].length > 3) {
+				words[COLUMN.CALORIES] = round(200 * words[COLUMN.PRICE_KG] / words[COLUMN.CALORIES][3], 2)
+			}
+		}
+	
 		lines[i] = words
 		result.push(lines[i]);
 	}
