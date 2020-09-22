@@ -9,6 +9,7 @@ class Column {
 		this.DISCOUNT = 5;
 		this.PRICE_KG = 6;
 		this.CALORIES = 7;
+		this.ENDINGS = ["", "", "", ",-", " kg", "%", ",-", ",-"]
 	}
 }
 
@@ -27,12 +28,12 @@ class Table {
 		let thead = instanceElement("thead", "", table);
 		let tr = instanceElement("tr", "", thead);
 		let tbody = instanceElement("tbody", "", table);
-		table.classList.add('pure-table');
+		table.classList.add('table');
 
 		for (let i = 0; i < this.table_head.length; i++) {
 			let th = instanceElement("th", "", tr);
 			let button = instanceElement("button", this.table_head[i], th)
-			button.classList.add('pure-button');
+			button.classList.add('button');
 			button.onclick = function() {
 				return grocery_table.sort(i)
 			}
@@ -40,9 +41,15 @@ class Table {
 
 		for (let i = 0; i < _table.length; i++) {
 			let tr = instanceElement("tr", "", tbody);
-
 			for (let j = 0; j < _table[i].length; j++) {
-				instanceElement("th", _table[i][j], tr);
+				if (_table[i][j] != "") {
+					var value = (j == COLUMN.DISCOUNT) ? _table[i][j] * 100 : _table[i][j]
+					value += COLUMN.ENDINGS[j]
+				}
+				else {
+					var value = "-"
+				}
+				instanceElement("th", value, tr);
 			}
 		}
 	}
@@ -99,8 +106,9 @@ function round(number, decimals) {
 function arrayFromCSV(_csv) {
 	let result = [];
 	let lines = _csv.split("\n");
+	result.push(lines[0].split(","));
 
-	for (let i = 0; i < lines.length; i++) {
+	for (let i = 1; i < lines.length; i++) {
 		var words = lines[i].split(",")
 
 		for (let j = 0; j < words.length; j++) {
@@ -109,24 +117,27 @@ function arrayFromCSV(_csv) {
 			}
 		}
 		
-		if (words[COLUMN.STORE] == "Kiwi" && words[COLUMN.DISCOUNT] == 0) {
+		if (words[COLUMN.STORE] === "Kiwi" && words[COLUMN.DISCOUNT] === 0) {
 			words[COLUMN.DISCOUNT] = 0.01
 		}
 
-		if (words[COLUMN.WEIGHT] == 0) {
-			if (words[COLUMN.PRICE_KG] == 0 || words[COLUMN.PRICE] == 0) {
+		if (words[COLUMN.WEIGHT] === 0) {
+			if (words[COLUMN.PRICE_KG] === 0 || words[COLUMN.PRICE] === 0) {
 				words[COLUMN.WEIGHT] = 1;
 			}
 			else {
 				words[COLUMN.WEIGHT] = round(words[COLUMN.PRICE] / words[COLUMN.PRICE_KG], 2);
 			}
 		}
-		if (words[COLUMN.PRICE_KG] == 0) {
-			words[COLUMN.PRICE_KG] = round((1 - words[COLUMN.DISCOUNT]) * words[COLUMN.PRICE] / words[COLUMN.WEIGHT], 2);
+		if (words[COLUMN.PRICE_KG] === 0) {
+			words[COLUMN.PRICE_KG] = round(words[COLUMN.PRICE] / words[COLUMN.WEIGHT], 2);
 		}
-		if (words[COLUMN.PRICE] == 0) {
+		if (words[COLUMN.PRICE] === 0) {
 			words[COLUMN.PRICE] = round(words[COLUMN.PRICE_KG] * words[COLUMN.WEIGHT], 2);
 		}
+		
+		words[COLUMN.PRICE] = round((1 - words[COLUMN.DISCOUNT]) * words[COLUMN.PRICE], 2)
+		words[COLUMN.PRICE_KG] = round((1 - words[COLUMN.DISCOUNT]) * words[COLUMN.PRICE_KG], 2)
 		
 		if (typeof words[COLUMN.CALORIES] === 'string') {
 			words[COLUMN.CALORIES] = words[COLUMN.CALORIES].split(";")
@@ -164,6 +175,12 @@ function checkSearch(_filter_key) {
 
 function sortFunction(_flip, _index) {
 	return function(a, b) {
+		if (a[_index] === 0) {
+			return (1);
+		}
+		if (b[_index] === 0) {
+			return (-1);
+		}
 		return ((a[_index] > b[_index]) - (a[_index] < b[_index])) * (1 - 2 * _flip);
 	}
 }

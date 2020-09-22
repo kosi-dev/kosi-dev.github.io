@@ -3,22 +3,11 @@ html {
 	font-family: Arial, Helvetica, sans-serif;
 }
 
-.hidden,
-[hidden] {
-	display: none !important;
-}
-
-.pure-img {
-	max-width: 100%;
-	height: auto;
-	display: block;
-}
-
 body, table {
 	margin-left: auto;
 	margin-right: auto;
-	font-size: large;
 	font-weight: 100;
+	font-size: 100%;
 }
 
 table {
@@ -27,6 +16,7 @@ table {
 
 body {
 	width: 100%;
+	max-width: 1080px;
 }
 
 h1 {
@@ -53,69 +43,41 @@ input:focus {
 	float: left;
 }
 
-.pure-button {
-	/* Structure */
-	display: inline-block;
-	line-height: normal;
-	white-space: nowrap;
+.button {
 	vertical-align: middle;
 	text-align: center;
 	cursor: pointer;
-	-webkit-user-drag: none;
-	user-select: none;
-	box-sizing: border-box;
-}
-
-.pure-button {
-	letter-spacing: normal;
-	word-spacing: normal;
-	vertical-align: top;
-	text-rendering: auto;
-}
-/*csslint outline-none:false*/
-
-.pure-button {
-	font-family: inherit;
 	font-size: 100%;
 	padding: 0.5em 1em;
 	color: rgba(0, 0, 0, 0.80);
 	border: none rgba(0, 0, 0, 0);
-	background-color: #E6E6E6;
-	text-decoration: none;
+	background-color: #eeeeee;
 	border-radius: 2px;
 }
 
-.pure-button-hover,
-.pure-button:hover,
-.pure-button:focus {
+.button-hover,
+.button:hover,
+.button:focus {
 	background-color: palevioletred;
 	color: white;
 }
-.pure-button:focus {
+.button:focus {
 	outline: 0;
 }
-.pure-button-active,
-.pure-button:active {
-	background-color: plum;
+.button-active,
+.button:active {
+	background-color: palevioletred;
 }
 
-.pure-table {
-	/* Remove spacing between table cells (from Normalize.css) */
+.table {
 	border-collapse: collapse;
 	border-spacing: 0;
 	empty-cells: show;
 	border: 1px solid #cbcbcb;
 }
 
-.pure-table caption {
-	color: #000;
-	font: italic 85%/1 arial, sans-serif;
-	padding: 1em 0;
-	text-align: center;
-}
-
-.pure-table td,
-.pure-table th {
+.table td,
+.table th {
 	font-size: inherit;
 	font-weight: inherit;
 	border-bottom: 1px solid #cbcbcb;
@@ -128,7 +90,7 @@ input:focus {
 	vertical-align: middle;
 }
 
-.pure-table thead {
+.table thead {
 	background-color: #e0e0e0;
 	color: #000;
 	text-align: center;
