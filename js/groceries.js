@@ -154,18 +154,26 @@ class List {
 	calculate() {
 		let children = this.body.children
 		let total = 0
-		
+		let total_cal = 0
+
 		for (let i = 0; i < children.length; i++) {
 			let tr = children[i]
 			let input = tr.children[1]
 			if (!isNaN(Number(input.value))) {
+				// TODO: Fix composition
 				let val = Number(input.value) * this.items[i][COLUMN.PRICE_KG] / 1000
 				val = (grocery_table.kiwi_pluss) ? val * (1 - this.items[i][COLUMN.DISCOUNT]) : val
-				tr.children[3].innerHTML = round(val, 2) + ",-"
+				tr.children[3].innerHTML = round(val, 2) + ",- "
 				total += val
+
+				if (this.items[i][COLUMN.CALORIES]) {
+					val = 2 * Number(input.value) * this.items[i][COLUMN.PRICE_KG] / this.items[i][COLUMN.CALORIES]
+					tr.children[3].innerHTML += "og " + round(val, 2) + " kcal "
+					total_cal += val
+				}
 			}
 		}
-		this.total.innerHTML = round(total, 2) + ",-"
+		this.total.innerHTML = round(total, 2) + ",- og " + round(total_cal, 2) + " kcal"
 	}
 	build_element(_i) {
 		let item = this.items[_i]
