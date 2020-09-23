@@ -12,7 +12,7 @@
 
 	<body>
 		<header>
-			<h1>Matvarer</h1>
+			<h1></h1>
 		</header>
 		
 		<nav>
@@ -20,20 +20,30 @@
 
 		<main>
 			<br>
-			<ul>
-				<h1></h1>
-				<li><input id="trumf" type="checkbox" onclick='grocery_table.edit_kiwi_pluss()' class="checkbox"> KIWI PLUSS</li>
-				
-				<li><input id="store" type="checkbox" onclick='grocery_table.edit_columns(COLUMN.STORE)' class="checkbox"> Butikk</li>
-				<li><input id="brand" type="checkbox" onclick='grocery_table.edit_columns(COLUMN.BRAND)' class="checkbox"> Produsent</li>
-				<li><input id="price" checked type="checkbox" onclick='grocery_table.edit_columns(COLUMN.PRICE)' class="checkbox"> Pris</li>
-				<li><input id="weight" type="checkbox" onclick='grocery_table.edit_columns(COLUMN.WEIGHT)' class="checkbox"> Vekt</li>
-				<li><input id="discount" type="checkbox" onclick='grocery_table.edit_columns(COLUMN.DISCOUNT)' class="checkbox"> Rabatt</li>
-				<li><input id="price_kg" checked type="checkbox" onclick='grocery_table.edit_columns(COLUMN.PRICE_KG)' class="checkbox"> Pris/kg</li>
-				<li><input id="calories" checked type="checkbox" onclick='grocery_table.edit_columns(COLUMN.CALORIES)' class="checkbox"> Pris/2000kcal</li>
-			</ul>
 
-			<input id="search" type="text" placeholder="Søk.." oninput="grocery_table.search()" autocomplete="off">
+			<div style="display: flex; width: 100%;">		
+				<div style="width:32%; padding-right: 100px; align-self: flex-end;">
+					<ul>
+						<h1></h1>
+						<li><input id="trumf" type="checkbox" onclick='grocery_table.edit_kiwi_pluss()' class="checkbox"> KIWI PLUSS</li>
+						
+						<li><input id="store" type="checkbox" onclick='grocery_table.edit_columns(COLUMN.STORE)' class="checkbox"> Butikk</li>
+						<li><input id="brand" type="checkbox" onclick='grocery_table.edit_columns(COLUMN.BRAND)' class="checkbox"> Produsent</li>
+						<li><input id="price" checked type="checkbox" onclick='grocery_table.edit_columns(COLUMN.PRICE)' class="checkbox"> Pris</li>
+						<li><input id="weight" type="checkbox" onclick='grocery_table.edit_columns(COLUMN.WEIGHT)' class="checkbox"> Vekt</li>
+						<li><input id="discount" type="checkbox" onclick='grocery_table.edit_columns(COLUMN.DISCOUNT)' class="checkbox"> Rabatt</li>
+						<li><input id="price_kg" checked type="checkbox" onclick='grocery_table.edit_columns(COLUMN.PRICE_KG)' class="checkbox"> Pris/kg</li>
+						<li><input id="calories" checked type="checkbox" onclick='grocery_table.edit_columns(COLUMN.CALORIES)' class="checkbox"> Pris/2000kcal</li>
+					</ul>
+		
+					<input id="search" type="text" placeholder="Søk.." oninput="grocery_table.search()" autocomplete="off" class="search">	
+				</div>
+				<div style="width:64%;">
+					<h2>Velkommen!</h2>
+					<p>Her kan du sammenligne priser på matvarer.</p>
+				</div>
+			</div>
+
 			
 			<!-- <div class="right">
 				<button class=button onclick='grocery_table.filter("Kiwi")'>Kiwi 🥇</button>

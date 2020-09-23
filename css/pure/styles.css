@@ -24,18 +24,18 @@ h1 {
 	text-align: center;
 }
 
-input {
+input.search {
 	padding: 10px 10px 10px 10px;
 	border-radius: 5px;
 	border-color: #cbcbcb;
 	border-style: solid;
-	width: 32%;
+	width: 100%;
 }
 
-input:focus {
+input.search:focus {
 	outline: none !important;
 	border: 2px solid plum;
-	width: 32%;
+	width: 100%;
 }
 
 .right {
