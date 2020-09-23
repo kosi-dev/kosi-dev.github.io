@@ -29,11 +29,13 @@ input {
 	border-radius: 5px;
 	border-color: #cbcbcb;
 	border-style: solid;
+	width: 32%;
 }
 
 input:focus {
 	outline: none !important;
 	border: 2px solid plum;
+	width: 32%;
 }
 
 .right {
@@ -95,4 +97,18 @@ input:focus {
 	text-align: center;
 	vertical-align: bottom;
 	align-content: center;
+}
+
+ul {
+	list-style-type: none;
+}
+
+.checkbox {
+	width: 20px;
+	height: 20px;
+}
+
+li {
+	padding: 4px;
+	margin-left: -48px;
 }
