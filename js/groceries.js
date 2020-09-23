@@ -46,6 +46,7 @@ class Table {
 
 		for (let i = 0; i < _table.length; i++) {
 			let tr = instanceElement("tr", "", tbody);
+			
 			for (let j = 0; j < _table[i].length; j++) {
 				if (this.columns[j]) {
 					if (_table[i][j] != "") {
@@ -57,7 +58,14 @@ class Table {
 					else {
 						var value = "-"
 					}
-					instanceElement("th", value, tr);
+					let th = instanceElement("th", value, tr);
+
+					if (j == COLUMN.FOOD) {
+						th.onclick = function() {
+							grocery_list.add(_table[i])
+						}
+						th.style = "cursor: pointer;"
+					}
 				}
 			}
 		}
@@ -95,11 +103,97 @@ class Table {
 	}
 }
 
+class List {
+	constructor() {
+		this.items = []
+		this.parent;
+		this.body = -1;
+		this.footer;
+	}
+	build() {
+		this.parent.innerHTML = ""
+		let table = instanceElement("table", "", this.parent);
+		instanceElement("thead", "Meny", table);
+		this.body = instanceElement("tbody", "", table);
+		this.footer = instanceElement("tfoot", "", table)
+
+		table.classList.add('table');
+		for (let i = 0; i < this.items.length; i++) {
+			this.build_element(i)
+		}
+		let tr = instanceElement("tr", "", this.footer);
+		instanceElement("th", "Totalt: ", tr);
+		this.total = instanceElement("th", "", tr);
+	}
+	add(_item) {
+		if (this.body == -1 || this.body.children.length == 0) {
+			this.items.push(_item)
+			this.build()
+		}
+		else if (!this.items.includes(_item)) {
+			this.items.push(_item)
+			this.build_element(this.body.children.length)
+		}
+		this.calculate()
+	}
+	remove(_item) {
+		let index = this.items.indexOf(_item)
+		this.items.splice(index, 1);
+		this.body.removeChild(this.body.children[index])
+		if (this.body.children.length == 0) {
+			this.parent.innerHTML = ""
+			this.body = -1
+		}
+		this.calculate()
+	}
+	clear() {
+		this.items.clear()
+		parent.innerHTML = ""
+		this.body = -1
+	}
+	calculate() {
+		let children = this.body.children
+		let total = 0
+		
+		for (let i = 0; i < children.length; i++) {
+			let tr = children[i]
+			let input = tr.children[1]
+			if (!isNaN(Number(input.value))) {
+				let val = round(Number(input.value) * this.items[i][COLUMN.PRICE_KG] / 1000, 2)
+				val = (grocery_table.kiwi_pluss) ? val * (1 - this.items[i][COLUMN.DISCOUNT]) : val
+				tr.children[3].innerHTML = val + ",-"
+				total += val
+			}
+		}
+		this.total.innerHTML = round(total, 2) + ",-"
+	}
+	build_element(_i) {
+		let item = this.items[_i]
+		let tr = instanceElement("tr", "", this.body);
+		instanceElement("th", item[COLUMN.FOOD], tr);
+		let input = instanceElement("input", "", tr);
+		input.classList.add("weight")
+		input.placeholder = "Vekt i gram"
+		let t = this
+		input.oninput = function() {
+			t.calculate()
+		}
+		let button = instanceElement("button", "X", tr);
+		button.classList.add("button")
+		button.onclick = function() {
+			t.remove(item)
+		}
+		instanceElement("p", "", tr);
+	}
+}
+
 var grocery_table;
+var grocery_list = new List();
 var COLUMN = new Column()
 
 $(document).ready(function() {
 	tableInit("assets/groceries/groceries.csv");
+	grocery_list.parent = document.getElementById("grocery_list")
 });
 
 function tableInit(_path, _parent) {
@@ -108,7 +202,7 @@ function tableInit(_path, _parent) {
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
 			grocery_table = new Table(arrayFromCSV(this.responseText));
-			grocery_table.parent = document.getElementById("table");
+			grocery_table.parent = document.getElementById("grocery_table");
 			grocery_table.build(grocery_table.table);
 			grocery_table.sort(COLUMN.PRICE_KG);
 		}
@@ -171,6 +265,7 @@ function arrayFromCSV(_csv) {
 
 function instanceElement(_id, _innerHTML, _parent) {
 	var e = document.createElement(_id);
+	e.id = _id
 	e.innerHTML = _innerHTML;
 	_parent.appendChild(e);
 	return e;

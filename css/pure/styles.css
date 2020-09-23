@@ -38,6 +38,20 @@ input.search:focus {
 	width: 100%;
 }
 
+input.weight {
+	padding: 0.5em 1em;
+	border-radius: 5px;
+	border-color: #cbcbcb;
+	border-style: solid;
+	width: 50%;
+}
+
+input.weight:focus {
+	outline: none !important;
+	border: 2px solid #4765FD;
+	width: 50%;
+}
+
 .right {
 	float: right;
 }

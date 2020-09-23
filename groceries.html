@@ -25,7 +25,7 @@
 				<div style="width:32%; padding-right: 100px; align-self: flex-end;">
 					<ul>
 						<h1></h1>
-						<li><input id="trumf" checked type="checkbox" onclick='grocery_table.edit_kiwi_pluss()' class="checkbox"> KIWI PLUSS</li>
+						<li><input id="trumf" checked type="checkbox" onclick='grocery_table.edit_kiwi_pluss(); grocery_list.calculate()' class="checkbox"> KIWI PLUSS</li>
 						
 						<li><input id="store" type="checkbox" onclick='grocery_table.edit_columns(COLUMN.STORE)' class="checkbox"> Butikk</li>
 						<li><input id="brand" type="checkbox" onclick='grocery_table.edit_columns(COLUMN.BRAND)' class="checkbox"> Produsent</li>
@@ -41,22 +41,15 @@
 				<div style="width:64%;">
 					<h2>Velkommen!</h2>
 					<p>Her kan du sammenligne priser på matvarer.</p>
+					<p>Du kan også sette opp en meny og sjekke hva den vil koste. Trykk i lista for å legge til menyen.</p>
+					<div id="grocery_list"></div>
 				</div>
 			</div>
 
-			
-			<!-- <div class="right">
-				<button class=button onclick='grocery_table.filter("Kiwi")'>Kiwi 🥇</button>
-				<button class=button onclick='grocery_table.filter("Rema 1000")'>Rema 🥈</button>
-				<button class=button onclick='grocery_table.filter("Bunnpris")'>Bunnpris 🥉</button>
-				<button class=button onclick='grocery_table.rebuild(grocery_table.table)'>Fjern filtere 🚫</button>
-			</div> -->
-
-			<br>
 			<br>
 			<br>
 
-			<div id="table"></div>
+			<div id="grocery_table"></div>
 		</main>
 	</body>
 </html>
