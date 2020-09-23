@@ -159,9 +159,9 @@ class List {
 			let tr = children[i]
 			let input = tr.children[1]
 			if (!isNaN(Number(input.value))) {
-				let val = round(Number(input.value) * this.items[i][COLUMN.PRICE_KG] / 1000, 2)
+				let val = Number(input.value) * this.items[i][COLUMN.PRICE_KG] / 1000
 				val = (grocery_table.kiwi_pluss) ? val * (1 - this.items[i][COLUMN.DISCOUNT]) : val
-				tr.children[3].innerHTML = val + ",-"
+				tr.children[3].innerHTML = round(val, 2) + ",-"
 				total += val
 			}
 		}
