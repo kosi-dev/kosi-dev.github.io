@@ -22,7 +22,7 @@ class Table {
 		this.sort_flip = false;
 		this.parent;
 		this.columns = [false, false, true, true, false, false, true, true]
-		this.kiwi_pluss = false
+		this.kiwi_pluss = true
 	}
 
 	build(_table) {
