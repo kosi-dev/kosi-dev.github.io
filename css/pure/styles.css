@@ -17,6 +17,7 @@ table {
 body {
 	width: 100%;
 	max-width: 1080px;
+	min-height: 1080px;
 }
 
 h1 {

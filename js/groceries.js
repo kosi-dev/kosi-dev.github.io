@@ -21,6 +21,8 @@ class Table {
 		this.sort_index = -1;
 		this.sort_flip = false;
 		this.parent;
+		this.columns = [false, false, true, true, false, false, true, true]
+		this.kiwi_pluss = false
 	}
 
 	build(_table) {
@@ -31,25 +33,32 @@ class Table {
 		table.classList.add('table');
 
 		for (let i = 0; i < this.table_head.length; i++) {
-			let th = instanceElement("th", "", tr);
-			let button = instanceElement("button", this.table_head[i], th)
-			button.classList.add('button');
-			button.onclick = function() {
-				return grocery_table.sort(i)
+			if (this.columns[i]) {
+				let th = instanceElement("th", "", tr);
+				let button = instanceElement("button", this.table_head[i], th)
+				button.classList.add('button');
+				button.onclick = function() {
+					return grocery_table.sort(i)
+				}
 			}
+			
 		}
 
 		for (let i = 0; i < _table.length; i++) {
 			let tr = instanceElement("tr", "", tbody);
 			for (let j = 0; j < _table[i].length; j++) {
-				if (_table[i][j] != "") {
-					var value = (j == COLUMN.DISCOUNT) ? _table[i][j] * 100 : _table[i][j]
-					value += COLUMN.ENDINGS[j]
+				if (this.columns[j]) {
+					if (_table[i][j] != "") {
+						var value = (this.kiwi_pluss && j == COLUMN.DISCOUNT) ? _table[i][j] * 100 : _table[i][j]
+						value = (this.kiwi_pluss && (j == COLUMN.PRICE || j == COLUMN.PRICE_KG)) ? round(value * (1 - _table[i][COLUMN.DISCOUNT]), 2) : value
+						value += COLUMN.ENDINGS[j]
+						value = (!this.kiwi_pluss && j == COLUMN.DISCOUNT) ? "-" : value
+					}
+					else {
+						var value = "-"
+					}
+					instanceElement("th", value, tr);
 				}
-				else {
-					var value = "-"
-				}
-				instanceElement("th", value, tr);
 			}
 		}
 	}
@@ -73,6 +82,16 @@ class Table {
 	search() {
 		let input = document.getElementById("search")
 		this.rebuild(this.table.filter(checkSearch(input.value.toLowerCase())));
+	}
+
+	edit_columns(_i) {
+		this.columns[_i] = !this.columns[_i]
+		this.rebuild(this.table_current)
+	}
+
+	edit_kiwi_pluss() {
+		this.kiwi_pluss = !this.kiwi_pluss
+		this.rebuild(this.table_current)
 	}
 }
 
@@ -135,9 +154,6 @@ function arrayFromCSV(_csv) {
 		if (words[COLUMN.PRICE] === 0) {
 			words[COLUMN.PRICE] = round(words[COLUMN.PRICE_KG] * words[COLUMN.WEIGHT], 2);
 		}
-		
-		words[COLUMN.PRICE] = round((1 - words[COLUMN.DISCOUNT]) * words[COLUMN.PRICE], 2)
-		words[COLUMN.PRICE_KG] = round((1 - words[COLUMN.DISCOUNT]) * words[COLUMN.PRICE_KG], 2)
 		
 		if (typeof words[COLUMN.CALORIES] === 'string') {
 			words[COLUMN.CALORIES] = words[COLUMN.CALORIES].split(";")
