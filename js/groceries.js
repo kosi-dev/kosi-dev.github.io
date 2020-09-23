@@ -50,7 +50,7 @@ class Table {
 				if (this.columns[j]) {
 					if (_table[i][j] != "") {
 						var value = (this.kiwi_pluss && j == COLUMN.DISCOUNT) ? _table[i][j] * 100 : _table[i][j]
-						value = (this.kiwi_pluss && (j == COLUMN.PRICE || j == COLUMN.PRICE_KG)) ? round(value * (1 - _table[i][COLUMN.DISCOUNT]), 2) : value
+						value = (this.kiwi_pluss && (j == COLUMN.PRICE || j == COLUMN.PRICE_KG || j == COLUMN.CALORIES)) ? round(value * (1 - _table[i][COLUMN.DISCOUNT]), 2) : value
 						value += COLUMN.ENDINGS[j]
 						value = (!this.kiwi_pluss && j == COLUMN.DISCOUNT) ? "-" : value
 					}
