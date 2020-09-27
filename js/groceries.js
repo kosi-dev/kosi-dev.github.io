@@ -241,7 +241,6 @@ function arrayFromCSV(_csv) {
 		if (words[COLUMN.STORE] === "Kiwi" && words[COLUMN.DISCOUNT] === 0) {
 			words[COLUMN.DISCOUNT] = 0.01
 		}
-
 		if (words[COLUMN.WEIGHT] === 0) {
 			if (words[COLUMN.PRICE_KG] === 0 || words[COLUMN.PRICE] === 0) {
 				words[COLUMN.WEIGHT] = 1;
