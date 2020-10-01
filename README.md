@@ -1,4 +1,4 @@
 
-# Kosi Dev website
+# kosi.dev website
 
-url: https://kosi-dev.github.io/
+url: https://kosi.dev
