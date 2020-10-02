@@ -1,10 +1,10 @@
 
 /* Roboto and Nunito import */
 @import url('https://fonts.googleapis.com/css?family=Roboto');
-@import url('https://fonts.googleapis.com/css?family=Nunito&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap');
 
 html {
-	font-family: 'Roboto';
+	font-family: 'Nunito';
 	color: white;
 }
 
@@ -28,7 +28,7 @@ body {
 	margin-right: auto;
 	font-size: 100%;
 	font-weight: 500;
-	background-color: #323232
+	background-color: #303040
 }
 
 a {
@@ -57,11 +57,13 @@ nav li {
 }
 
 nav ul li a {
-	font-size: larger;
+	font-style: italic;
+	font-size: x-large;
+	font-weight: bold;
 	padding: 16px;
 	padding-right: 64px;
 	padding-left: 64px;
-	background-color: #161616;
+	background-color: #008080;
 	border-radius: 10px;
 	text-decoration: none;
 }
