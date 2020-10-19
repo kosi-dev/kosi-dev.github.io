@@ -9,10 +9,17 @@ html {
 }
 
 main {
-	padding-top: 64px;
-	margin-right: 20%;
-	margin-left: 20%;
+	margin: auto;
+	max-width: 54em;
 	font-size: large;
+	border-color: white;
+	border-radius: 2em;
+	border-width: 2px;
+	border-style: solid;
+	padding-right: 2em;
+	padding-left: 2em;
+	padding-top: 2em;
+	min-height: 600px;
 }
 
 h1 {
@@ -24,11 +31,10 @@ h1 {
 }
 
 body {
-	margin-left: auto;
-	margin-right: auto;
+	margin: auto;
 	font-size: 100%;
 	font-weight: 500;
-	background-color: #303040
+	background-color: #303040;
 }
 
 a {
@@ -36,19 +42,17 @@ a {
 }
 
 nav {
-	width: 100%;
-}
-
-li {
-	padding: 16px;
+	margin: auto;
+	max-width: 67em;
+	padding-bottom: 2em;
 }
 
 nav ul {
 	list-style-type: none;
-	width: auto;
-	height: auto;
+	margin: 0;
+	padding: 0;
 	display: flex;
-	justify-content: space-evenly;
+	justify-content: space-between;
 }
 
 nav li {
@@ -60,10 +64,14 @@ nav ul li a {
 	font-style: italic;
 	font-size: x-large;
 	font-weight: bold;
-	padding: 16px;
-	padding-right: 64px;
-	padding-left: 64px;
+	padding: 0.8em;
+	padding-right: 2em;
+	padding-left: 2em;
 	background-color: #008080;
-	border-radius: 10px;
+	border-radius: 0.5em;
 	text-decoration: none;
+}
+
+a.selected {
+	background-color: #00C080;
 }
