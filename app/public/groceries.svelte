@@ -1,13 +1,12 @@
-<!DOCTYPE html>
 
 <html>
 	<head>
 		<title>Matlista</title>
 		<script src="import/google.js"></script>
 		<script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-		<script src="js/groceries.js"></script>
+		<script src="groceries/groceries.js"></script>
 		<meta charset="UTF-16">
-		<link rel="stylesheet" href="css/groceries.css">
+		<link rel="stylesheet" href="groceries/groceries.css">
 	</head>
 	
 	<body>

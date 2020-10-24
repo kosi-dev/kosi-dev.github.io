@@ -1,11 +1,18 @@
+
 <script>
 	import Google from './Google.svelte';
+	import Home from './Home.svelte';
 	import NavButton from './NavButton.svelte';
 	import Header from './Header.svelte';
-	import Projects from './Projects.svelte'
-	import Home from './Home.svelte'
+	import Projects from './Projects.svelte';
 
-	const pages = [Home, Projects];
+	function Page(_class, name) {
+		return { class: _class, name: name};
+	}
+	const pages = [
+		Page(Home, 'Home'),
+		Page(Projects, 'Projects'),
+	]
 	let main = pages[0];
 </script>
 
@@ -20,13 +27,13 @@
 <nav>
 	<ul>
 		{#each pages as page}
-			<li><NavButton click={() => (main = page)} text={page.name}/></li>
+			<li><NavButton bind:main click={() => (main = page)} {page}/></li>
 		{/each}
 	</ul>
 </nav>
 
 <main>
-	<svelte:component this={main}/>
+	<svelte:component this={main.class}/>
 </main>
 
 <style>
@@ -47,11 +54,6 @@
 		border-top-style: none;
 	}
 
-	a {
-		color: white;
-	}
-
-		
 	nav {
 		margin: auto;
 		max-width: 54rem;
