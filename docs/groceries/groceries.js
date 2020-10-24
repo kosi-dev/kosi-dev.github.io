@@ -200,7 +200,7 @@ var grocery_list = new List();
 var COLUMN = new Column()
 
 $(document).ready(function() {
-	tableInit("assets/groceries/groceries.csv");
+	tableInit("groceries/groceries.csv");
 	grocery_list.parent = document.getElementById("grocery_list")
 });
 
