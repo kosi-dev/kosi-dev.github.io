@@ -1,10 +1,10 @@
 
 <head>
+	<meta charset='UTF-16'>
 	<title>Matlista</title>
 	<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
-	<script src='groceries/groceries.js'></script>
-	<meta charset='UTF-16'>
-	<link rel='stylesheet' href='groceries/groceries.css'>
+	<script src='./groceries/groceries.js'></script>
+	<link rel='stylesheet' href='./groceries/groceries.css'>
 </head>
 
 <body>
@@ -23,7 +23,7 @@
 					<li><input id='price_kg' checked type='checkbox' onclick='grocery_table.edit_columns(COLUMN.PRICE_KG)' class='checkbox'> Pris / kg</li>
 					<li><input id='calories' checked type='checkbox' onclick='grocery_table.edit_columns(COLUMN.CALORIES)' class='checkbox'> Pris / 2000 kcal</li>
 				</ul>
-	
+				
 				<input id='search' type='text' placeholder='Søk..' oninput='grocery_table.search()' autocomplete='off' class='search'>	
 			</div>
 			<div style='width:64%;'>
