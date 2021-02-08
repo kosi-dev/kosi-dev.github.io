@@ -10,13 +10,17 @@
 			alert("This is not Waldo!")
 		}
 	}
+
+	export let page = "Waldo";
+	const setPage = _page => () => page = _page;
 </script>
 
 <header>
 	<h1>Where's Waldo?</h1>
 </header>
 
-<a href="index.html">Home</a>
+<p on:click={setPage("Main")}>Home</p>
+
 <br><br><br>
 <main>
 	<div>

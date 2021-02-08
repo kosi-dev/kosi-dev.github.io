@@ -3,9 +3,9 @@
 <script>
 	import Home from './Home.svelte';
 	import Projects from './Projects.svelte';
-	import Header from '../Objects/Header.svelte';
-	import NavButton from '../Objects/NavButton.svelte';
-	import Google from '../Objects/Google.svelte';
+	import Header from '../Components/Header.svelte';
+	import NavButton from '../Components/NavButton.svelte';
+	import Google from '../Components/Google.svelte';
 
 	function Page(_class, _name) {
 		return { class: _class, name: _name};
@@ -15,14 +15,14 @@
 		Page(Projects, 'Projects'),
 	]
 	let main = pages[0];
-	let page = "Test";
+	
+	export let page = "Main";
 </script>
 
 <!-- HTML -->
 <svelte:head>
 	<title>kosi.dev</title>
 	<link rel='icon' type='image/x-icon' href='assets/icon.ico'>
-	<Google/>
 </svelte:head>
 
 <Header/>
@@ -36,7 +36,7 @@
 </nav>
 
 <main>
-	<svelte:component this={main.class}/>
+	<svelte:component this={main.class} bind:page={page}/>
 </main>
 
 <!-- STYLE -->
