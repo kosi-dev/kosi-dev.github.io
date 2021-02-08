@@ -1,6 +1,5 @@
 
 <head>
-	<meta charset='UTF-16'>
 	<title>Matlista</title>
 	<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
 	<script src='./groceries/groceries.js'></script>

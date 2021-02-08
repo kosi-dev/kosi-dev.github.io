@@ -11,6 +11,8 @@
 	<Google/>
 </svelte:head>
 
+<h1>⚠️This site is under construction!⚠️</h1>
+
 {#if page == "Main"}
 	<Main bind:page={page}/>
 {:else if page == "Waldo"}
@@ -18,3 +20,9 @@
 {:else if page == "Groceries"}
 	<Groceries bind:page={page}/>
 {/if}
+
+<style>
+	h1 {
+		text-align: center;
+	}
+</style>
