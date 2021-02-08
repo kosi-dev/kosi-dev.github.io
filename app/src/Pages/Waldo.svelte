@@ -44,10 +44,4 @@
 		padding-top: 50px;
 		padding-bottom: 0px;
 	}
-	a {
-		text-align: center;
-		font-size: 20pt;
-		font-family: 'Nunito', sans-serif;
-		padding-bottom: 10rem;
-	}
 </style>
